@@ -83,6 +83,47 @@ namespace Practica5_ED
                 lResultado.Text = lResultado.Text + monedas + " monedas de 1 euro\n";
                 cantidad = cantidad % 1;
             }
-        }
+            if (cantidad > 0) // hay decimales
+            {
+                cantidad = (int)Math.Round(cantidad * 100); // redondeo para obtener los decimales. Ejemplo: 0,889999.. se redondea a 89
+
+                if (cantidad >= 50)
+                {
+                    centimos = (int)cantidad / 50;
+                    lResultado.Text = lResultado.Text + centimos + " monedas de 50 centimos\n";
+                    cantidad = cantidad % 50;
+                }
+
+                if (cantidad >= 20)
+                {
+                    centimos = (int)cantidad / 20;
+                    lResultado.Text = lResultado.Text + centimos + " monedas de 20 centimos\n";
+                    cantidad = cantidad % 20;
+                }
+                if (cantidad >= 10)
+                {
+                    centimos = (int)cantidad / 10;
+                    lResultado.Text = lResultado.Text + centimos + " monedas de 10 centimos\n";
+                    cantidad = cantidad % 10;
+                }
+                if (cantidad >= 5)
+                {
+                    centimos = (int)cantidad / 5;
+                    lResultado.Text = lResultado.Text + centimos + " monedas de 5 centimos\n";
+                    cantidad = cantidad % 5;
+                }
+                if (cantidad >= 2)
+                {
+                    centimos = (int)cantidad / 2;
+                    lResultado.Text = lResultado.Text + centimos + " monedas de 2 centimos\n";
+                    cantidad = cantidad % 2;
+                }
+                if (cantidad >= 1)
+                {
+                    centimos = (int)cantidad / 1;
+                    lResultado.Text = lResultado.Text + centimos + " monedas de 1 centimos\n";
+
+                }
+            }
     }
 }
