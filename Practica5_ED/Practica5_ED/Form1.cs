@@ -16,5 +16,73 @@ namespace Practica5_ED
         {
             InitializeComponent();
         }
+
+        private void bCalcular_Click(object sender, EventArgs e)
+        {
+            double cantidad;
+            int billetes, monedas, centimos;
+
+            cantidad = double.Parse(tCantidad.Text); //Ejemplo: 768,89
+
+            lResultado.Text = "";
+
+
+            if (cantidad >= 500) // Si 768,89 > 500
+            {
+                billetes = (int)cantidad / 500; // billetes=768/500 =1
+
+                lResultado.Text = lResultado.Text + billetes + " billetes de 500\n";
+                cantidad = cantidad % 500; //768,89 % 500 = 268,89
+
+            }
+            if (cantidad >= 200)
+            {
+                billetes = (int)cantidad / 200;
+                lResultado.Text = lResultado.Text + billetes + " billetes de 200\n";
+                cantidad = cantidad % 200;
+            }
+            if (cantidad >= 100)
+            {
+                billetes = (int)cantidad / 100;
+                lResultado.Text = lResultado.Text + billetes + " billetes de 100\n";
+                cantidad = cantidad % 100;
+            }
+            if (cantidad >= 50)
+            {
+                billetes = (int)cantidad / 50;
+                lResultado.Text = lResultado.Text + billetes + " billetes de 50 euros\n";
+                cantidad = cantidad % 50;
+            }
+            if (cantidad >= 20)
+            {
+                billetes = (int)cantidad / 50;
+                lResultado.Text = lResultado.Text + billetes + " billetes de 20 euros\n";
+                cantidad = cantidad % 50;
+            }
+            if (cantidad >= 10)
+            {
+                billetes = (int)cantidad / 10;
+                lResultado.Text = lResultado.Text + billetes + " billetes de 10 euros\n";
+                cantidad = cantidad % 10;
+            }
+            if (cantidad >= 5)
+            {
+                billetes = (int)cantidad / 5;
+                lResultado.Text = lResultado.Text + billetes + " billetes de 5 euros\n";
+                cantidad = cantidad % 5;
+            }
+            if (cantidad >= 2)
+            {
+                monedas = (int)cantidad / 2;
+                lResultado.Text = lResultado.Text + monedas + " monedas de 2 euros\n";
+                cantidad = cantidad % 2;
+            }
+            if (cantidad >= 1)
+            {
+                monedas = (int)cantidad / 1;
+                lResultado.Text = lResultado.Text + monedas + " monedas de 1 euro\n";
+                cantidad = cantidad % 1;
+            }
+        }
     }
 }

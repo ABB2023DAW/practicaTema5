@@ -50,6 +50,7 @@
             this.bCalcular.TabIndex = 6;
             this.bCalcular.Text = "Calcular";
             this.bCalcular.UseVisualStyleBackColor = true;
+            this.bCalcular.Click += new System.EventHandler(this.bCalcular_Click);
             // 
             // tCantidad
             // 
