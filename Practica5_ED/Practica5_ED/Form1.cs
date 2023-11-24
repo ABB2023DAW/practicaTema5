@@ -19,112 +19,33 @@ namespace Practica5_ED
 
         private void bCalcular_Click(object sender, EventArgs e)
         {
-            double cantidad;
-            int billetes, monedas, centimos;
-
-            cantidad = double.Parse(tCantidad.Text); //Ejemplo: 768,89
-
-            lResultado.Text = "";
-
-
-            if (cantidad >= 500) // Si 768,89 > 500
-            {
-                billetes = (int)cantidad / 500; // billetes=768/500 =1
-
-                lResultado.Text = lResultado.Text + billetes + " billetes de 500\n";
-                cantidad = cantidad % 500; //768,89 % 500 = 268,89
-
-            }
-            if (cantidad >= 200)
-            {
-                billetes = (int)cantidad / 200;
-                lResultado.Text = lResultado.Text + billetes + " billetes de 200\n";
-                cantidad = cantidad % 200;
-            }
-            if (cantidad >= 100)
-            {
-                billetes = (int)cantidad / 100;
-                lResultado.Text = lResultado.Text + billetes + " billetes de 100\n";
-                cantidad = cantidad % 100;
-            }
-            if (cantidad >= 50)
-            {
-                billetes = (int)cantidad / 50;
-                lResultado.Text = lResultado.Text + billetes + " billetes de 50 euros\n";
-                cantidad = cantidad % 50;
-            }
-            if (cantidad >= 20)
-            {
-                billetes = (int)cantidad / 50;
-                lResultado.Text = lResultado.Text + billetes + " billetes de 20 euros\n";
-                cantidad = cantidad % 50;
-            }
-            if (cantidad >= 10)
-            {
-                billetes = (int)cantidad / 10;
-                lResultado.Text = lResultado.Text + billetes + " billetes de 10 euros\n";
-                cantidad = cantidad % 10;
-            }
-            if (cantidad >= 5)
-            {
-                billetes = (int)cantidad / 5;
-                lResultado.Text = lResultado.Text + billetes + " billetes de 5 euros\n";
-                cantidad = cantidad % 5;
-            }
-            if (cantidad >= 2)
-            {
-                monedas = (int)cantidad / 2;
-                lResultado.Text = lResultado.Text + monedas + " monedas de 2 euros\n";
-                cantidad = cantidad % 2;
-            }
-            if (cantidad >= 1)
-            {
-                monedas = (int)cantidad / 1;
-                lResultado.Text = lResultado.Text + monedas + " monedas de 1 euro\n";
-                cantidad = cantidad % 1;
-            }
-            if (cantidad > 0) // hay decimales
-            {
-                cantidad = (int)Math.Round(cantidad * 100); // redondeo para obtener los decimales. Ejemplo: 0,889999.. se redondea a 89
-
-                if (cantidad >= 50)
-                {
-                    centimos = (int)cantidad / 50;
-                    lResultado.Text = lResultado.Text + centimos + " monedas de 50 centimos\n";
-                    cantidad = cantidad % 50;
-                }
-
-                if (cantidad >= 20)
-                {
-                    centimos = (int)cantidad / 20;
-                    lResultado.Text = lResultado.Text + centimos + " monedas de 20 centimos\n";
-                    cantidad = cantidad % 20;
-                }
-                if (cantidad >= 10)
-                {
-                    centimos = (int)cantidad / 10;
-                    lResultado.Text = lResultado.Text + centimos + " monedas de 10 centimos\n";
-                    cantidad = cantidad % 10;
-                }
-                if (cantidad >= 5)
-                {
-                    centimos = (int)cantidad / 5;
-                    lResultado.Text = lResultado.Text + centimos + " monedas de 5 centimos\n";
-                    cantidad = cantidad % 5;
-                }
-                if (cantidad >= 2)
-                {
-                    centimos = (int)cantidad / 2;
-                    lResultado.Text = lResultado.Text + centimos + " monedas de 2 centimos\n";
-                    cantidad = cantidad % 2;
-                }
-                if (cantidad >= 1)
-                {
-                    centimos = (int)cantidad / 1;
-                    lResultado.Text = lResultado.Text + centimos + " monedas de 1 centimos\n";
-
-                }
-            }
+                string textoTelegrama;
+                char tipoTelegrama = ' ';
+                int numPalabras = 0;
+                double coste;
+                //Leo el telegrama
+                textoTelegrama = txtTelegrama.Text;
+                // telegrama urgente?
+                if (cbUrgente.Checked)
+                    tipoTelegrama = 'u';
+                //Obtengo el número de palabras que forma el telegrama
+                numPalabras = textoTelegrama.Length;
+                //Si el telegrama es ordinario
+                if (tipoTelegrama == 'o')
+                    if (numPalabras <= 10)
+                        coste = 25;
+                    else
+                        coste = 0.5 * numPalabras;
+                else
+                //Si el telegrama es urgente
+                if (tipoTelegrama == 'u')
+                    if (numPalabras <= 10)
+                        coste = 5;
+                    else
+                        coste = 5 + 0.75 * (numPalabras - 10);
+                else
+                    coste = 0;
+                txtPrecio.Text = coste.ToString() + " euros";
         }
     }
 }
